@@ -42,6 +42,8 @@ public class FuenteDatosDAO {
             
             registro.setProducto( "Producto numero: " + i );
             
+            calendario.add(Calendar.DAY_OF_MONTH, 1);
+            
             datos.add(registro);
         }
 

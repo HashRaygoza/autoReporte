@@ -6,8 +6,6 @@
 package mx.ticom.autoreporte;
 
 import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.text.ParseException;
@@ -17,9 +15,7 @@ import java.util.logging.Logger;
 import mx.ticom.autoreporte.dao.FuenteDatosDAO;
 import mx.ticom.autoreporte.reporte.Reporte;
 import mx.ticom.autoreporte.vo.DatosReporte;
-import org.apache.poi.ss.usermodel.Row;
-import org.apache.poi.ss.usermodel.Sheet;
-import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+
 
 /**
  *
@@ -33,22 +29,9 @@ public class App {
             
             Reporte reporte = new Reporte();
             
-            try (XSSFWorkbook libro = reporte.crearLibro()) {
-                Sheet pagina = reporte.crearPagina(libro);
-                int numeroRow = 0;
-                Row encabezado = pagina.createRow(numeroRow);
-                reporte.crearEncabezado(encabezado, DatosReporte.class);
-                numeroRow = 1;
-                for(DatosReporte d : datos){
-                    Row fila = pagina.createRow(numeroRow);
-                    reporte.agregarDatos(fila, d);
-                    numeroRow++;
-                }
-                File archivo = new File("reporte.xlsx");
-                try (FileOutputStream salida = new FileOutputStream(archivo)) {                
-                    libro.write(salida);
-                }
-            }            
+            reporte.crearPaginaReporte(datos, DatosReporte.class, "Reporte de Productos");
+            reporte.grabarReporte(new File("reporte.xlsx"));
+            
             
         } catch (ParseException | IllegalAccessException | NoSuchMethodException | InvocationTargetException | IOException ex) {
             Logger.getLogger(App.class.getName()).log(Level.SEVERE, null, ex);

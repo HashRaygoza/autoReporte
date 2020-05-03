@@ -15,7 +15,7 @@ import mx.ticom.autoreporte.anotaciones.ColumnaReporte;
  * @author david
  */
 public class DatosReporte {
-    @ColumnaReporte(nombreColumna="Fecha")
+    @ColumnaReporte(nombreColumna="Fecha del producto")
     private Date fecha;
     
     @ColumnaReporte(nombreColumna="Nombre Producto")
