@@ -12,7 +12,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
-import mx.ticom.autoreporte.vo.DatosReporte;
+import mx.ticom.autoreporte.vo.DatosReporteProductos;
 
 /**
  *
@@ -20,8 +20,8 @@ import mx.ticom.autoreporte.vo.DatosReporte;
  */
 public class FuenteDatosDAO {
 
-    public ArrayList<DatosReporte> generarDatos() throws ParseException {
-        ArrayList<DatosReporte> datos = new ArrayList<>();
+    public ArrayList<DatosReporteProductos> generarDatos() throws ParseException {
+        ArrayList<DatosReporteProductos> datos = new ArrayList<>();
         SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd");
         Date fechaInicial = formato.parse("2000-01-01");
         BigDecimal cien = new BigDecimal("100");
@@ -30,7 +30,7 @@ public class FuenteDatosDAO {
         calendario.setTime(fechaInicial);
 
         for (int i = 0; i < 500; i++) {
-            DatosReporte registro = new DatosReporte();
+            DatosReporteProductos registro = new DatosReporteProductos();
             
             Date fecha = new Date(calendario.getTimeInMillis());
             registro.setFecha(fecha);

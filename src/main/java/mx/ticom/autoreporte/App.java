@@ -12,9 +12,11 @@ import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import mx.ticom.autoreporte.dao.EmpleadosDAO;
 import mx.ticom.autoreporte.dao.FuenteDatosDAO;
 import mx.ticom.autoreporte.reporte.Reporte;
-import mx.ticom.autoreporte.vo.DatosReporte;
+import mx.ticom.autoreporte.vo.DatosReporteEmpleados;
+import mx.ticom.autoreporte.vo.DatosReporteProductos;
 
 
 /**
@@ -25,11 +27,15 @@ public class App {
     static public void main(String[] args) {
         try {
             FuenteDatosDAO fuenteDatosDAO = new FuenteDatosDAO();
-            ArrayList<DatosReporte> datos = fuenteDatosDAO.generarDatos();
+            EmpleadosDAO empleadosDAO = new EmpleadosDAO();
+            ArrayList<DatosReporteProductos> datos = fuenteDatosDAO.generarDatos();
+            ArrayList<DatosReporteEmpleados> empleados = empleadosDAO.datosEmpleados();
             
             Reporte reporte = new Reporte();
             
-            reporte.crearPaginaReporte(datos, DatosReporte.class, "Reporte de Productos");
+            reporte.crearPaginaReporte(datos, DatosReporteProductos.class, "Reporte de Productos");
+            reporte.crearPaginaReporte(empleados, DatosReporteEmpleados.class, "Reporte Empleados");
+            
             reporte.grabarReporte(new File("reporte.xlsx"));
             
             
