@@ -31,7 +31,7 @@ public class Reporte {
     }
     
     
-    private void crearEncabezado(Row fila, Class claseDatos){
+    public void crearEncabezado(Row fila, Class claseDatos){
         Field[] campos = claseDatos.getDeclaredFields();
         int numCelda = 0;
         
