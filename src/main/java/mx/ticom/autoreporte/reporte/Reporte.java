@@ -13,12 +13,22 @@ import mx.ticom.autoreporte.anotaciones.ColumnaReporte;
 import org.apache.commons.beanutils.PropertyUtils;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.usermodel.Sheet;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 /**
  *
  * @author david
  */
 public class Reporte {
+    
+    public XSSFWorkbook crearLibro() {
+        return new XSSFWorkbook();
+    }
+    
+    public Sheet crearPagina(XSSFWorkbook libro){
+        return libro.createSheet("Reporte");
+    }
     
     
     private void crearEncabezado(Row fila, Class claseDatos){
